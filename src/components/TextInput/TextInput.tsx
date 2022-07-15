@@ -26,6 +26,7 @@ const TextInput: React.FC<Props> = ({
       placeholder={placeholder}
       onChange={onChange}
       onBlur={onBlur}
+      autoComplete="off"
       {...restProps}
     />
   );
