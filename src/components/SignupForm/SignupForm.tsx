@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import { Formik, ErrorMessage } from 'formik';
 import * as S from './SignupForm.style';
 import { signupValidationSchema } from 'util/validationSchema';
+import PasswordCheckList from 'components/PasswordCheckList/PasswordCheckList';
 import TextInput from 'components/TextInput/TextInput';
 
 const initialValue = {
@@ -19,7 +20,7 @@ const SignupForm: React.FC = () => {
   return (
     <Formik initialValues={initialValue} onSubmit={handleSubmit} validationSchema={signupValidationSchema}>
       {(formik) => {
-        const { values, handleChange, handleSubmit } = formik;
+        const { values, touched, errors, handleChange, handleSubmit, handleBlur } = formik;
 
         return (
           <S.FormContainer onSubmit={handleSubmit}>
@@ -28,8 +29,10 @@ const SignupForm: React.FC = () => {
                 id="username"
                 name="username"
                 value={values.username}
-                onChange={handleChange}
                 placeholder="Name"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={touched.username && errors.username ? 'name-error' : undefined}
               />
               <ErrorMessage name="username">{(msg) => <S.FormErrorMessage>{msg}</S.FormErrorMessage>}</ErrorMessage>
             </div>
@@ -40,8 +43,10 @@ const SignupForm: React.FC = () => {
                 name="email"
                 type="email"
                 value={values.email}
-                onChange={handleChange}
                 placeholder="Email"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={touched.email && errors.email ? 'email-error' : undefined}
               />
               <ErrorMessage name="email">{(msg) => <S.FormErrorMessage>{msg}</S.FormErrorMessage>}</ErrorMessage>
             </div>
@@ -52,9 +57,14 @@ const SignupForm: React.FC = () => {
                 name="password"
                 type="password"
                 value={values.password}
-                onChange={handleChange}
                 placeholder="Password"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={touched.password && errors.password ? 'password-error' : undefined}
               />
+
+              <PasswordCheckList value={values.password} isTouched={touched.password} />
+
               <ErrorMessage name="password">{(msg) => <S.FormErrorMessage>{msg}</S.FormErrorMessage>}</ErrorMessage>
             </div>
 
@@ -64,9 +74,12 @@ const SignupForm: React.FC = () => {
                 name="confirmPassword"
                 type="password"
                 value={values.confirmPassword}
-                onChange={handleChange}
                 placeholder="Confirm Password"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={touched.confirmPassword && errors.confirmPassword ? 'confirm-password-error' : undefined}
               />
+
               <ErrorMessage name="confirmPassword">
                 {(msg) => <S.FormErrorMessage>{msg}</S.FormErrorMessage>}
               </ErrorMessage>

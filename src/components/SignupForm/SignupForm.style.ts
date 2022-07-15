@@ -7,6 +7,13 @@ export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  .name-error,
+  .email-error,
+  .password-error,
+  .confirm-password-error {
+    border-color: ${red};
+  }
 `;
 
 export const Button = styled.button`
