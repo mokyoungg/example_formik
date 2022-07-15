@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const black = '#242427';
+const red = '#E55D5D';
 
 export const FormContainer = styled.form`
   display: flex;
@@ -19,4 +20,10 @@ export const Button = styled.button`
   border: 1px solid ${black};
   border-radius: 4px;
   cursor: pointer;
+`;
+
+export const FormErrorMessage = styled.p`
+  color: ${red};
+  font-size: 14px;
+  margin: 0;
 `;
