@@ -1,6 +1,6 @@
 const Test = () => {
     return(
-        <div>test account</div>
+        <div>test account!</div>
     )
 }
 
